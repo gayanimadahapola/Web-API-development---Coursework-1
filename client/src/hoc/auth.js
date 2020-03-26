@@ -35,5 +35,3 @@ export default function (ComposedClass, reload, adminRoute = null) {
     }
     return AuthenticationCheck
 }
-
-

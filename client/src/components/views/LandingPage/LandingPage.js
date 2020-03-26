@@ -4,7 +4,7 @@ import { Icon, Col, Card, Row } from 'antd';
 import ImageSlider from '../../utils/ImageSlider';
 import CheckBox from './Sections/CheckBox';
 import RadioBox from './Sections/RadioBox';
-import { continents, price } from './Sections/Datas';
+import { quantities, price } from './Sections/Datas';
 import SearchFeature from './Sections/SearchFeature';
 
 const { Meta } = Card;
@@ -18,7 +18,7 @@ function LandingPage() {
     const [SearchTerms, setSearchTerms] = useState("")
 
     const [Filters, setFilters] = useState({
-        continents: [],
+        quantities: [],
         price: []
     })
 
@@ -143,7 +143,7 @@ function LandingPage() {
     return (
         <div style={{ width: '75%', margin: '3rem auto' }}>
             <div style={{ textAlign: 'center' }}>
-                <h2>  Let's Travel Anywhere  <Icon type="rocket" />  </h2>
+                <h2>  Buy fruits for your home fruits stall  <Icon type="rocket" />  </h2>
             </div>
 
 
@@ -152,8 +152,8 @@ function LandingPage() {
             <Row gutter={[16, 16]}>
                 <Col lg={12} xs={24} >
                     <CheckBox
-                        list={continents}
-                        handleFilters={filters => handleFilters(filters, "continents")}
+                        list={quantities}
+                        handleFilters={filters => handleFilters(filters, "quantities")}
                     />
                 </Col>
                 <Col lg={12} xs={24}>

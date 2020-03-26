@@ -6,14 +6,14 @@ import FileUpload from '../../utils/FileUpload';
 const { Title } = Typography;
 const { TextArea } = Input;
 
-const Continents = [
-    { key: 1, value: "Africa" },
-    { key: 2, value: "Europe" },
-    { key: 3, value: "Asia" },
-    { key: 4, value: "North America" },
-    { key: 5, value: "South America" },
-    { key: 6, value: "Australia" },
-    { key: 7, value: "Antarctica" }
+const Quantities = [
+    { key: 1, value: "One" },
+    { key: 2, value: "Two" },
+    { key: 3, value: "Three" },
+    { key: 4, value: "Four" },
+    { key: 5, value: "Five" },
+    { key: 6, value: "Six" },
+    { key: 7, value: "More than six items" }
 ]
 
 export class UploadProductPage extends Component {
@@ -21,7 +21,7 @@ export class UploadProductPage extends Component {
     state = {
         title: '',
         description: '',
-        continents: 1,
+        quantities: 1,
         images: [],
         price: 0
     }
@@ -39,8 +39,8 @@ export class UploadProductPage extends Component {
         this.setState({ description: event.currentTarget.value })
     }
 
-    handleChangeContinents = (event) => {
-        this.setState({ continents: event.currentTarget.value })
+    handleChangeQuantities = (event) => {
+        this.setState({ quantities: event.currentTarget.value })
     }
 
     onSubmit = (event) => {
@@ -51,7 +51,7 @@ export class UploadProductPage extends Component {
         }
 
         if (!this.state.title || !this.state.description ||
-            !this.state.continents || !this.state.images
+            !this.state.quantities || !this.state.images
             || !this.state.price) {
             return alert('Please first fill all the fields')
         }
@@ -61,7 +61,7 @@ export class UploadProductPage extends Component {
             title: this.state.title,
             description: this.state.description,
             images: this.state.images,
-            continents: this.state.continents,
+            quantities: this.state.quantities,
             price: this.state.price
         }
 
@@ -87,7 +87,7 @@ export class UploadProductPage extends Component {
         return (
             <div style={{ maxWidth: '700px', margin: '2rem auto' }}>
             <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-                <Title level={2} > Upload Travel Product</Title>
+                <Title level={2} > Upload Product</Title>
             </div>
 
             <Form onSubmit={this.onSubmit}>
@@ -114,8 +114,8 @@ export class UploadProductPage extends Component {
                     value={this.state.price}
                 />
                 <br /><br />
-                <select onChange={this.handleChangeContinents}>
-                    {Continents.map(item => (
+                <select onChange={this.handleChangeQuantities}>
+                    {Quantities.map(item => (
                         <option key={item.key} value={item.key}>{item.value}</option>
                     ))}
                 </select>
