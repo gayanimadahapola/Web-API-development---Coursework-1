@@ -6,7 +6,7 @@ import Axios from 'axios';
 const { Title } = Typography;
 const { TextArea } = Input;
 
-//designing list under drop down
+//designing list under drop down -- product quantity
 const Quantities = [
     { key: 1, value: "One" },
     { key: 2, value: "Two" },
