@@ -1,9 +1,21 @@
 
 ## Getting started
-run the following command under project & client to install dependencies
+Goto the project folder (client / server) and install required dependencies:
  ```
  npm install
- ```
+```
+Project will be automatically open at http://localhost.com:3000
+
+For development run:
+
+```
+npm run dev
+```
+For production build:
+
+```
+npm run dev
+```
 
 To use this application, 
 
