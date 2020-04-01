@@ -1,5 +1,9 @@
-Hello, My Friends  
-Thank you for Having interest in this repository ! 
+
+## Getting started
+run the following command under project & client to install dependencies
+ ```
+ npm install
+ ```
 
 To use this application, 
 
