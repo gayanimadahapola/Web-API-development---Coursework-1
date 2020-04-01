@@ -6,7 +6,7 @@ import Axios from 'axios';
 const { Title } = Typography;
 const { TextArea } = Input;
 
-//designing list under drop down -- product quantity
+//designing list under drop down
 const Quantities = [
     { key: 1, value: "One" },
     { key: 2, value: "Two" },
@@ -68,6 +68,7 @@ function UploadProductPage(props) {
             .then(response => {
                 if (response.data.success) {
                     alert('Product Successfully Uploaded')
+                    //move the page in to History page after upload is successful
                     props.history.push('/')
                 } else {
                     alert('Failed to upload Product')
