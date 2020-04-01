@@ -4,7 +4,6 @@ import { Icon } from 'antd';
 import Axios from 'axios';
 function FileUpload(props) {
 
-    //we are going to save an array of images here
     const [Images, setImages] = useState([])
 
     const onDrop = (files) => {
@@ -14,7 +13,6 @@ function FileUpload(props) {
             header: { 'content-type': 'multipart/form-data' }
         }
         formData.append("file", files[0])
-
         //save the Image we chose inside the Node Server 
         Axios.post('/api/product/uploadImage', formData, config)
             .then(response => {

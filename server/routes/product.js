@@ -29,7 +29,7 @@ var upload = multer({ storage: storage }).single("file")
 
 router.post("/uploadImage", auth, (req, res) => {
 
-    //getting image from the client
+    //getting image from the front end
     upload(req, res, err => {
         if (err) {
             return res.json({ success: false, err })
