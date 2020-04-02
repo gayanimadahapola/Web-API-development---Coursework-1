@@ -4,6 +4,7 @@ const path = require("path");
 const cors = require('cors');
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
+const userRouter = require('./routes/users');
 
 // const mongoose = require("mongoose");
 // mongoose
@@ -15,6 +16,8 @@ const mongoose = require("mongoose");
 const connect = mongoose.connect("mongodb://localhost/shoppingCartDB",
 {
     useNewUrlParser: true
+    useCreateIndex: true,
+    useUnifiedTopology: true
 })
   .then(() => console.log('MongoDB Connected...'))
   .catch(err => console.log(err));
@@ -29,7 +32,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-app.use('/api/users', require('./routes/users'));
+app.use('/api/users', userRouter);
 app.use('/api/product', require('./routes/product'));
 
 //use this to show the image you have in node js server to client (react js)

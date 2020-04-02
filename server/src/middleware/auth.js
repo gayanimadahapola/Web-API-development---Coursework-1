@@ -18,12 +18,12 @@ let auth = (req, res, next) => {
       }
 
       req.user = user;
-      next();;
+      next();
     })
   } else {
     return res.json({
       loginSuccess: false,
-      message: 'Unauthorized'
+      message: 'Unauthorized to accesss'
   })
   }
 };
