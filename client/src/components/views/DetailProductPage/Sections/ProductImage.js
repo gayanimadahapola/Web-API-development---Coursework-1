@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import ImageGallery from 'react-image-gallery';
 
 function ProductImage(props) {
+
     const [Images, setImages] = useState([])
 
     useEffect(() => {
@@ -14,9 +15,8 @@ function ProductImage(props) {
                     thumbnail: `http://localhost:5000/${item}`
                 })
             })
-         setImages(images)
+            setImages(images)
         }
-        
     }, [props.detail])
 
     return (
@@ -24,7 +24,6 @@ function ProductImage(props) {
             <ImageGallery items={Images} />
         </div>
     )
-   
 }
 
 export default ProductImage
