@@ -26,7 +26,7 @@ npm run dev
 For production build:
 
 ```
-npm run dev
+npm run prod
 ```
 
 To use this application, 
