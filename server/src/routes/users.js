@@ -4,7 +4,11 @@ const { User } = require("../models/User");
 const { Product } = require('../models/Product');
 const { auth } = require("../middleware/auth");
 
-const async = require('async');
+const userRouter = express.Router();
+const { compare, hashSync } = require('bcrypt');
+const { getAuthToken } = require('../helpers/token-handler.js');
+
+//const async = require('async');
 
 //=================================
 //             User
@@ -25,41 +29,70 @@ router.get("/auth", auth, (req, res) => {
     });
 });
 
-router.post("/register", (req, res) => {
+userRouter.post("/register", (req, res) => {
+    const { name, email, password, lastname, role, image } = req.body;
 
-    const user = new User(req.body);
+    const hash = hashSync(password, 10);
 
-    user.save((err, doc) => {
-        if (err) return res.json({ success: false, err });
-        return res.status(200).json({
-            success: true
-        });
+    const data = {
+        name,
+        email,
+        password: hash,
+        lastname,
+        role,
+        image
+    };
+
+    new User(data).save().then((response) => {
+        return res
+            .status(200)
+            .json({
+                loginSuccess: true,
+                data: [],
+                message: `User ${response.email} registered successful`
+            });
+    }).catch((error) => {
+        return res
+            .status(500)
+            .json({
+            loginSuccess: false,
+            message: error.message
+        })
     });
 });
 
-router.post("/login", (req, res) => {
-    User.findOne({ email: req.body.email }, (err, user) => {
-        if (!user)
-            return res.json({
-                loginSuccess: false,
-                message: "Auth failed, email not found"
-            });
+userRouter.post("/login", (req, res) => {
+    const { email, password } = req.body;
 
-        user.comparePassword(req.body.password, (err, isMatch) => {
-            if (!isMatch)
-                return res.json({ loginSuccess: false, message: "Wrong password" });
+    if (!email && !password) {
+        return res.status(400).json({
+            loginSuccess: false,
+            message: 'Required fields are missing or invalid'
+        })
+    }
 
-            user.generateToken((err, user) => {
-                if (err) return res.status(400).send(err);
-                res.cookie("w_authExp", user.tokenExp);
-                res
-                    .cookie("w_auth", user.token)
-                    .status(200)
-                    .json({
-                        loginSuccess: true, userId: user._id
-                    });
+    User.findOne({ email: email }).then((user) => {
+        let isValid = false;
+        if (user) {
+            isValid = compare(password, user.password);
+        }
+
+        if (isValid) {
+            return getAuthToken(user).then((accessToken) => {
+                if (accessToken) {
+                    return res.json({
+                        loginSuccess: true,
+                        message: 'User authentication is successful',
+                        data: accessToken
+                    })
+                }
             });
-        });
+        }
+
+        return res.status(404).json({
+            loginSuccess: false,
+            message: 'Invalid email or password'
+        })
     });
 });
 

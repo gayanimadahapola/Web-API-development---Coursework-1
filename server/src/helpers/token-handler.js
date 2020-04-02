@@ -1,7 +1,7 @@
 const { sign } = require('jsonwebtoken');
 
 async function getAuthToken(user) {
-    return jwt.sign({
+    return sign({
         email: user.email
     }, '12345678');
 }
