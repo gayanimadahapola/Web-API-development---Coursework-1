@@ -18,17 +18,6 @@ Goto the project folder (client / server) and install required dependencies:
 ```
 The apllication will be automatically open at http://localhost.com:3000
 
-For development run:
-
-```
-npm run dev
-```
-For production build:
-
-```
-npm run prod
-```
-
 To use this application, 
 
 1. make dev.js file inside config folder 

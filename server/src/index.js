@@ -15,7 +15,7 @@ const userRouter = require('./routes/users');
 const mongoose = require("mongoose");
 const connect = mongoose.connect("mongodb://localhost/shoppingCartDB",
 {
-    useNewUrlParser: true
+    useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true
 })

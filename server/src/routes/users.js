@@ -291,4 +291,4 @@ router.get('/getHistory', auth, (req, res) => {
     )
 })
 
-module.exports = router;
+module.exports = userRouter;
